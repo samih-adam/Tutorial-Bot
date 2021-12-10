@@ -5,6 +5,10 @@ from dotenv import load_dotenv
 from os import getenv
 import yfinance as yf
 from yfinance.ticker import Ticker
+import os
+import requests
+import json
+
 
 load_dotenv()
 

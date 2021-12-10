@@ -13,6 +13,8 @@ import json
 load_dotenv()
 
 appl = yf.Ticker("AAPL")
+msft = yf.Ticker("MSFT")
+spy = yf.Ticker("SPY")
 
 bot = commands.Bot(command_prefix='.')
 
@@ -25,11 +27,23 @@ async def add(ctx, num1:float, num2:float):
     await ctx.reply(num1+num2)
 
 @bot.command()
-async def stock(ctx):
+async def appl(ctx):
     
     apple = str(appl.info['dividendRate'])
     print(apple)
     await ctx.reply('Here is your dividend rate ' + apple)
+
+@bot.command()
+async def microsoft(ctx):
+    
+    microsoft = str(msft.info['dividendRate'])
+    print(microsoft)
+    microsoft_2 = msft.quarterly_balance_sheet
+    print(microsoft_2)
+    await ctx.reply('Here is your dividend rate ' + microsoft)
+    
+
+
 
 
 bot.run(getenv('TOKEN'))

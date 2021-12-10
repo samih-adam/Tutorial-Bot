@@ -10,6 +10,8 @@ import os
 import requests
 import json
 
+
+
 client = discord.Client()
 
 load_dotenv()
@@ -19,20 +21,6 @@ msft = yf.Ticker("MSFT")
 spy = yf.Ticker("SPY")
 
 bot = commands.Bot(command_prefix='.')
-
-def get_quote():
-    response = requests.get("https://zenquotes.io/api/random")
-    json_data = json.loads(response.text)
-    quote = json_data[0]['q'] + " -" + json_data[0]['a']
-    return(quote)
-
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('$inspire'):
-        quote = get_quote()
-        await message.channel.send(quote)
-
 
 @bot.command()
 async def hello(ctx):
@@ -57,9 +45,5 @@ async def microsoft(ctx):
     microsoft_2 = msft.quarterly_balance_sheet
     print(microsoft_2)
     await ctx.reply('Here is your dividend rate ' + microsoft)
-    
-
-
-
 
 bot.run(getenv('TOKEN'))
